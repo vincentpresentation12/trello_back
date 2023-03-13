@@ -11,7 +11,22 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize
+const db = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.tasks = require("../model/tasks")(sequelize, Sequelize);
+db.statuses = require("../model/statuses")(sequelize, Sequelize);
+
+db.statuses.hasMany(db.tasks, {
+  foreignKey: "statusId",
+  as: "tasks",
+  onDelete: "CASCADE",
+});
+db.tasks.belongsTo(db.statuses, {
+  foreignKey: "statusId",
+  as: "status",
+});
+db.sequelize
   .authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
@@ -21,4 +36,4 @@ sequelize
     console.error("Unable to connect to the database:", error);
   });
 
-module.exports = { sequelize };
+module.exports = db;

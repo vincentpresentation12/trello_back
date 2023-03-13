@@ -8,7 +8,7 @@ const app = express();
 const port = 3000;
 
 (async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
   // Code here
 })();
 app.use(express.json());
