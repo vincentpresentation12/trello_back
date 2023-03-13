@@ -5,7 +5,6 @@ const statusesRouter = express.Router();
 
 statusesRouter.get("/", statusesCtrl.getAllStatuses);
 statusesRouter.get("/tasks", statusesCtrl.getAllStatusesWithTasks);
-statusesRouter.get("/tasks/:id", statusesCtrl.getAllStatusesByIdWithTasks);
 statusesRouter.post("/", statusesCtrl.createStatus);
 statusesRouter.put("/:id", statusesCtrl.updateStatusById);
 statusesRouter.delete("/:id", statusesCtrl.deleteStatusByIdAndTasks);

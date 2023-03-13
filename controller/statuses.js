@@ -13,17 +13,6 @@ const getAllStatusesWithTasks = async (req, res) => {
   });
   res.json(statuses);
 };
-
-const getAllStatusesByIdWithTasks = async (req, res) => {
-  const { id } = req.params;
-  const statuses = await Statuses.findAll({
-    where: { id },
-    include: "tasks",
-    order: [["id", "ASC"]],
-  });
-  res.json(statuses);
-};
-
 const createStatus = async (req, res) => {
   const { name } = req.body;
   const status = await Statuses.create({ name });
@@ -48,5 +37,4 @@ module.exports = {
   createStatus,
   updateStatusById,
   deleteStatusByIdAndTasks,
-  getAllStatusesByIdWithTasks,
 };

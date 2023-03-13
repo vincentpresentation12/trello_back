@@ -26,6 +26,12 @@ const updateTaskById = async (req, res) => {
   res.json(task);
 };
 
+const getTasksById = async (req, res) => {
+  const { id } = req.params;
+  const task = await Tasks.findByPk(id);
+  res.json(task);
+};
+
 const deleteTaskById = async (req, res) => {
   const { id } = req.params;
   const task = await Tasks.destroy({ where: { id } });
@@ -50,4 +56,5 @@ module.exports = {
   updateTaskById,
   updateStatusById,
   deleteTaskById,
+  getTasksById,
 };
